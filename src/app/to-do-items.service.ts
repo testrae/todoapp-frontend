@@ -10,7 +10,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 
 export class ToDoItemsService {
-  public ToDoItemUrl = 'http://127.0.0.1:8000/rest_api/v1/ToDoItem/';  // URL to web api
+  public ToDoItemUrl = 'http://34.68.208.129/rest_api/v1/ToDoItem/';  // URL to web api
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
