@@ -1,0 +1,65 @@
+version: 2.1
+orbs:
+  node: circleci/node@4.5.1
+  gcp-gke: circleci/gcp-gke@0.1.0
+  gcr: circleci/gcp-gcr@0.0.2
+jobs:
+  build:
+    docker:
+      - image: 'circleci/node:12.14-browsers'
+    description: Install npm
+
+    steps:
+      - checkout
+      - restore_cache:
+          # See the configuration reference documentation for more details on using restore_cache and save_cache steps
+          # https://circleci.com/docs/2.0/configuration-reference/?section=reference#save_cache
+          keys:
+            - node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+      - run:
+          name: install packages
+          command: npm ci
+      - save_cache:
+          key: node-deps-v1-{{ .Branch }}-{{checksum "package-lock.json"}}
+          paths:
+            - ~/.npm
+      - run:
+          name: Run Tests
+          command: npm run test
+
+  Build-Push-Image-Docker:
+    description: Build and push image to Google Container Registry
+    machine: true
+    steps:
+      - checkout
+      - gcr/gcr-auth
+      - gcr/build-image:
+          image: frontend
+          tag: "v1" #Change version number e.g to 'v3' when updating application
+      - gcr/push-image:
+          image: frontend
+          tag: "v1" #Change version number e.g to 'v3' when updating application
+
+  deploy:
+    description: Deploy application to Google Kubernetes Engine
+    machine: true
+    steps:
+      # Install `gcloud` and `kubectl` if not already installed.
+      - gcp-gke/install
+      # Initialize the `gcloud` CLI.
+      - gcp-gke/init
+      # Update a deployment Docker image.
+      - gcp-gke/rollout-image:
+          deployment: todo-frontend
+          container: todo-frontend
+          image: gcr.io/todo-frontend-317621/frontend:v1 # change version when updating
+workflows:
+  build_update_deploy:
+    jobs:
+      - build
+      - Build-Push-Image-Docker:
+          requires:
+            - build
+      - deploy:
+          requires:
+            - Build-Push-Image-Docker
