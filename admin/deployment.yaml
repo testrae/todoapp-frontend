@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-frontend
+  template:
+    metadata:
+      labels:
+        app: todo-frontend
+    spec:
+      containers:
+      - name: todo-frontend
+        # Replace $GCLOUD_PROJECT with your project ID
+        image: gcr.io/todo-frontend-317621/frontend:v1
+        # This app listens on port 8080 for web traffic by default.
+        ports:
+        - containerPort: 80
+        env:
+          - name: PORT
+            value: "80"
