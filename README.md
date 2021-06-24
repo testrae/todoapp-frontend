@@ -1,27 +1,39 @@
 # TodoappFrontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.5.
+This is a Angular frontend application developed with Angular 12.0.5. to work with django backend service
+
+## Requirements
+
+npm
+angular 12.0.5
 
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+  `ng serve`  Navigate to `http://localhost:4200/`. 
 
-## Code scaffolding
+or 
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+    docker build -t todoapp-frontend -f Dockerfile .
 
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+    docker run -t todoapp-frontend 
 
 ## Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+##Tech
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+LOCAL -> Git -> CI/CD(CircleCi)-->Trigger backend build -> Google VM
 
-## Further help
+Any successfull build trigger backend build and tests as well before deploying
+the kubernetes. "Trigger the Build Job" is the job name on circleci config.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+##Notes
+
+I learned a bit of angular development for this project to work as requested but i had some problems writing 
+unit tests in angular. Created a mock api to test the services. But it might not fully satisfy the 
+unit testing requirements. 
+
+Deployment files: admin/
+
+Circleci config: .circleci/
