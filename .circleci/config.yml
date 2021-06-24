@@ -26,7 +26,10 @@ jobs:
       - run:
           name: Run Tests
           command: npm run test
-
+      - run:
+          name: Trigger the Build Job
+          command: |
+                  curl -X POST "https://circleci.com/api/v1.1/project/github/testrae/todo-backend/build" -H "Circle-Token:bb333c02a19f48226090628588efc5d864e0cdad"
   Build-Push-Image-Docker:
     description: Build and push image to Google Container Registry
     machine: true
