@@ -3,50 +3,6 @@ import { ToDoItemsService } from './to-do-items.service';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ToDoItem } from './to-do-item';
-// describe('ToDoItemsService', () => {
-//   let service: ToDoItemsService;
-//
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       imports: [HttpClientModule],
-//       providers: [ToDoItemsService]
-//     });
-//     service = TestBed.inject(ToDoItemsService);
-//   });
-//
-//   it('should be ', () => {
-//     expect(service).toBeTruthy();
-//   });
-// });
-//
-// describe('DataService', () => {
-//   beforeEach(() => {
-//     TestBed.configureTestingModule({
-//       imports: [HttpClientTestingModule],
-//       providers: [ToDoItemsService]
-//     });
-//     testService = TestBed.get(ToDoItemsService);
-//     httpMock = TestBed.get(HttpTestingController);
-//   });
-//   it(
-//     'should get users',
-//     inject(
-//       [HttpTestingController, ToDoItemsService],
-//       (httpMock: HttpTestingController, todoService: ToDoItemsService) => {
-//         const mockUsers = [
-//           { name: 'Alice', website: 'example.com' },
-//           { name: 'Bob', website: 'example.org' }
-//         ];
-//
-//         const req = testService.getToDoItems().subscribe((res) => {
-//         expect(res).toEqual(mockUsers);
-//       });
-//
-//
-// }
-//     )
-//   );
-// });
 
 
 //Testing of EmployeeService
