@@ -6,7 +6,7 @@ RUN sudo chmod -R 777 /app
 RUN  npm ci && npm run build
 # stage 2
 FROM nginx:alpine
-COPY --from=frontend /app/dist/todo-frontend /usr/share/nginx/html
+COPY --from=frontend /app/dist/todoapp-frontend /usr/share/nginx/html
 
 EXPOSE 80
 
