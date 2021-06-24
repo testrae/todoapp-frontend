@@ -1,0 +1,15 @@
+<div>
+  <label for="new-todoitems">ToDo: </label>
+  <input id="new-todoitems" #todoitem />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(todoitem.value); todoitem.value=''">
+    Add ToDo-v1
+  </button>
+</div>
+
+<ul class="todoitems">
+  <li *ngFor="let todo of todoitems">
+    <span class="badge">{{todo.text}}</span>
+  </li>
+</ul>
