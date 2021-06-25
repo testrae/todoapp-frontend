@@ -25,8 +25,6 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 LOCAL -> Git -> CI/CD(CircleCi)-->Trigger backend build -> Google VM
 
-Any successfull build trigger backend build and tests as well before deploying
-the kubernetes. "Trigger the Build Job" is the job name on circleci config.
 
 ##Notes
 
