@@ -35,3 +35,5 @@ unit testing requirements.
 Deployment files: admin/
 
 Circleci config: .circleci/
+
+prod server : http://35.199.26.72/
